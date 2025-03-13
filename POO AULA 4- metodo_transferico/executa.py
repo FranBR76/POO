@@ -9,7 +9,7 @@ print(c2.saldo)
 print(c1.saldo)
 c2.depositar(300.0)
 print(c2.saldo)
-c2.transferencia(c1,30)
+c2.transferencia(c1,30) #por algum motivo não está funcionando com valores altos
 print(c1.saldo)
 print(c2.saldo)
 
