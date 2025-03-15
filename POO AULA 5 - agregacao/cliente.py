@@ -3,3 +3,5 @@ class Cliente:
         self.nome = nome
         self.sobrenome = sobrenome
         self.cpf = cpf
+
+    
