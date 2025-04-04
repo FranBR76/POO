@@ -20,7 +20,7 @@ class Bibliotecario(Funcionario):
         if self.autenticado == True:
             objetoLivro = livro.replace(' ', '_')
             arquivo = open('C:/xampp/htdocs/py/POO/POO-AULA-9-heranca/biblioteca/cadastroObras.py', 'a')
-            arquivo.write(f"{objetoLivro} = Obras('{livro}', '{autor}', {ano}) \n{objetoLivro}.disponivel = True " '\n')
+            arquivo.write(f"\n{objetoLivro} = Obras('{livro}', '{autor}', {ano}) \n{objetoLivro}.disponivel = True " '\n')
             arquivo.close()
             print(f'Livro - {livro} cadastrado com sucesso!')
 
