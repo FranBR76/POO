@@ -75,19 +75,19 @@ class Aluno:
 
 
     def emprestar(self, obra):
-        if obra.disponivel:
-            obra.disponivel = False 
-            self.livros_emprestados.append(obra)
-            self.historico.registrar_evento(f"Emprestou a obra '{obra.titulo}'")
-            print(f"Emprestimo realizado com sucesso: {obra.titulo}")
+        if obra._disponivel:
+            obra._disponivel = False 
+            self._livros_emprestados.append(obra)
+            self.historico.registrar_evento(f"Emprestou a obra '{obra._titulo}'")
+            print(f"Emprestimo realizado com sucesso: {obra._titulo}")
         else:
-            print(f"Erro: A obra '{obra.titulo}' ja esta emprestada.")
+            print(f"Erro: A obra '{obra._titulo}' ja esta emprestada.")
 
     def devolver(self, obra):
-        if obra in self.livros_emprestados:
-            obra.disponivel = True  
-            self.livros_emprestados.remove(obra)
-            self.historico.registrar_evento(f"Devolveu a obra '{obra.titulo}'")
-            print(f"Devolucao realizada com sucesso: {obra.titulo}")
+        if obra in self._livros_emprestados:
+            obra._disponivel = True  
+            self._livros_emprestados.remove(obra)
+            self.historico.registrar_evento(f"Devolveu a obra '{obra._titulo}'")
+            print(f"Devolucao realizada com sucesso: {obra._titulo}")
         else:
-            print(f"Erro: A obra '{obra.titulo}' nao esta registrada como emprestada por {self.nome}.")
+            print(f"Erro: A obra '{obra._titulo}' nao esta registrada como emprestada por {self._nome}.")

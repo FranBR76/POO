@@ -11,12 +11,12 @@ class HistoricoBiblioteca:
         
         # print("Data de cadastro do livro: {} \n".format(self.data_abertura))
         print("Emprestimos: ")
-        for e in self.emprestimos:
+        for e in self._emprestimos:
             print("- ", e)
 
     def registrar_evento(self, evento):
         data = datetime.datetime.today()
-        self.emprestimos.append(f"{data} - {evento}")
+        self._emprestimos.append(f"{data} - {evento}")
 
 
     def get_emprestimos(self):
