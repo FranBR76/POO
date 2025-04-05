@@ -18,15 +18,17 @@ bibliotecario = Bibliotecario('Cesco',
 
 # def __init__(self, nome, ra, dt_nasc, cpf, email):
 a1 = Aluno('Cesco', '123', '18/11/2005', '7878', 'francesco@gmail.com')
-obra1 = Obras('O Menino Maluquinho', 'Ziraldo', 2015)
-obra2 = Obras('Harry Potter', 'J.K. Rowling', 2017)
 
-a1.emprestar(Livro_top)
-a1.devolver(Livro_top)
-a1.historico.imprime()
-# a1.devolver(obra1)
+# a1.emprestar(Livro_top)
+# a1.devolver(Livro_top)
 # a1.historico.imprime()
+
+
+
+
 # bibliotecario.autentica('senha123')
 # bibliotecario.cadastrar_livro('Livro top', 'Autor top', '2023')
 # bibliotecario.cadastrar_livro('Pedro Games', 'Autor toe2ep', '2023')
 # bibliotecario.cadastrar_livro('MiniMEUS', 'Autor to2e2p', '2023')
+
+bibliotecario.historico.imprime()

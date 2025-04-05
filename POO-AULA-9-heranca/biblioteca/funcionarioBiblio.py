@@ -4,7 +4,5 @@ class Funcionario:
         self._cpf = cpf
         self._cargo = cargo
         self._salario = salario
-    
-    # def get_bonificacao(self):
-    #     return self._salario *0.10
+  
     

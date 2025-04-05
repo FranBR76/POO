@@ -1,4 +1,4 @@
-from historicobiblioteca import HistoricoBiblioteca
+from historicobiblioteca import HistoricoAluno
 
 class Obras:
     def __init__(self, titulo, autor, ano):
@@ -6,7 +6,7 @@ class Obras:
         self._autor = autor
         self._ano = ano
         # self.aluno = aluno
-        self.historicobiblioteca = HistoricoBiblioteca()
+        self.historicobiblioteca = HistoricoAluno()
         self._disponivel = True
     
     def get_titulo(self):
