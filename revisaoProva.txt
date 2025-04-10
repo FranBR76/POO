@@ -1,0 +1,6 @@
+Classe = um modelo para criar objetos.
+Objetos é uma instancia de uma Classe.
+Um metodo é uma acao a qual o objeto pode executar.
+Composicao: é quando uma classe pode ser inserida em qualquer outra classe.
+Agregacao: é uma juncao de classes, onde uma classe fica dependente da outra.
+
