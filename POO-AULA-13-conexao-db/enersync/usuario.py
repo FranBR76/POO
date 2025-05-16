@@ -4,6 +4,7 @@ import mysql.connector
 
 class Usuario:
     def __init__(self, id=None, nome="", email="", senha="", permissoes="", cpf="", dt_nasc="" ):
+        self.__id = id
         self.__nome = nome
         self.__email = email
         self.__senha = senha
@@ -11,6 +12,9 @@ class Usuario:
         self.__cpf = cpf
         self.__dt_nasc = dt_nasc
 
+    @property
+    def id(self):
+        return self.__id
 
     @property
     def nome(self):

@@ -19,7 +19,7 @@ class UsuarioDAO:
         sql = "INSERT INTO usuario (nome, email) VALUES (%s, %s)"
         self.cursor.execute(sql, (usuario.nome, usuario.email))
         self.conexao.commit()
-        self.conexao.close()
+       
 
     def listar(self):
         self.cursor.execute("SELECT * FROM usuario")
@@ -30,11 +30,11 @@ class UsuarioDAO:
         sql = "UPDATE usuario SET nome = %s, email = %s WHERE id = %s"
         self.cursor.execute(sql, (usuario.nome, usuario.email, usuario.id))
         self.conexao.commit()
-        self.conexao.close()
+       
 
     def deletar(self, id):
         sql = "DELETE FROM usuario WHERE id = %s"
         self.cursor.execute(sql, (id,))
         self.conexao.commit()
-        self.conexao.close()
+       
         
