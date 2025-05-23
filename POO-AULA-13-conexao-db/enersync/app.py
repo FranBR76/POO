@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from usuario import Usuario
 from usuarioDAO import UsuarioDAO
+from appVeiculo import VeiculoApp
 
 class App:
     def __init__(self, root):
@@ -48,11 +49,12 @@ class App:
         self.entry_id.pack()
 
         #? BOTOES
-        tk.Button(root, text="Criar", command=self.criar, font="Arial: 20", bg="#ccc").pack(side="left", padx=30)
-        tk.Button(root, text="Listar", command=self.listar, font="Arial: 20", bg="#ccc").pack(side="right", padx=30)
-        tk.Button(root, text="Atualizar", command=self.atualizar, font="Arial: 20", bg="#ccc").pack(side="left", padx=30)
-        tk.Button(root, text="Deletar", command=self.deletar, font="Arial: 20", bg="#ccc").pack(side="right", padx=30)
+        tk.Button(root, text="Criar", command=self.criar, font="Arial: 20", bg="#333", fg="white").pack(side="left", padx=30)
+        tk.Button(root, text="Listar", command=self.listar, font="Arial: 20", bg="#333", fg="white").pack(side="right", padx=30)
+        tk.Button(root, text="Atualizar", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").pack(side="left", padx=30)
+        tk.Button(root, text="Deletar", command=self.deletar, font="Arial: 20", bg="#333", fg="white", ).pack(side="right", padx=30)
 
+        tk.Button(root, text="TESTE", command=self.cadastrar_veiculo, font="Arial: 20", bg="#333", fg="white", ).pack(side="bottom", padx=30)
         self.text_resultado = tk.Text(root, height=10, font="Arial: 20", bg="#ccc")
         self.text_resultado.pack(side="bottom", padx=20, pady=20)
 
@@ -84,7 +86,7 @@ class App:
         usuarios = self.dao.listar()
         self.text_resultado.delete(1.0, tk.END)
         for r in usuarios:
-            self.text_resultado.insert(tk.END, f"ID: {r[0]} | Nome: {r[1]} | Email: {r[2]}\n")
+            self.text_resultado.insert(tk.END, f"ID: {r[0]} | Nome: {r[1]} | Email: {r[2]}\n\n")
             self.limpar_campos()
 
     def atualizar(self):
@@ -117,6 +119,16 @@ class App:
         self.entry_senha.delete(0, tk.END)
         self.entry_cpf.delete(0, tk.END)
         self.entry_dt_nasc.delete(0, tk.END)
+
+
+    def cadastrar_veiculo(self):
+        if __name__ == "__main__":
+            self.root.destroy()
+            root = tk.Tk()
+            app = VeiculoApp(root)
+            root.mainloop()
+
+
        
 
 if __name__ == "__main__":
