@@ -41,7 +41,7 @@ class UsuarioDAO:
     
     def verificar_usuario(self, email, senha):
         try:
-            sql = "SELECT * FROM usuario WHERE email = %s AND senha = %s"
+            sql = "SELECT id FROM usuario WHERE email = %s AND senha = %s"
             self.cursor.execute(sql, (email, senha))
             resultado = self.cursor.fetchone()
             return resultado  # retorna None se não encontrou

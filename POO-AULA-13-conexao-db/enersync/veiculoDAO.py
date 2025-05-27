@@ -18,7 +18,7 @@ class VeiculoDAO:
         
     def cadastrar(self, veiculo):
         sql = "INSERT INTO veiculo (id_usuario, marca, modelo) VALUES (%s, %s, %s)"
-        self.cursor.execute(sql, (self.usuario.id, veiculo.marca, veiculo.modelo))
+        self.cursor.execute(sql, (veiculo.id_usuario, veiculo.marca, veiculo.modelo))
         self.conexao.commit()
     
     def listarautos(self):

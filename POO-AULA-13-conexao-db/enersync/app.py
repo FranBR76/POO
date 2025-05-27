@@ -10,12 +10,149 @@ from veiculoDAO import VeiculoDAO
 from PIL import Image, ImageTk
 
 
-class App:
+class Login():
     def __init__(self, root):
+        self.root = root
+        self.root.title("Login")
         self.dao = UsuarioDAO()
+        self.root.geometry("720x560")
+
+        tk.Label(root, text="Email:", font="Arial: 40").pack(pady=5)
+        self.entry_email = tk.Entry(root, font="Arial: 40")
+        self.entry_email.pack(pady=5)
+
+        tk.Label(root, text="Senha:", font="Arial: 40").pack(pady=5)
+        self.entry_senha = tk.Entry(root, show="*", font="Arial: 40")
+        self.entry_senha.pack(pady=5)
+
+        tk.Button(root, text="Entrar", command=self.verificar_login , font="Arial: 40", bg="#228B22", fg="white").pack(pady=10)
+
+
+        tk.Button(root, text="Registrar-se", command=self.criar_conta , font="Arial: 10", bg="#228B22", fg="white").pack(pady=10)
+
+    def verificar_login(self):
+        email = self.entry_email.get()
+        senha = self.entry_senha.get()
+
+        resultado = self.dao.verificar_usuario(email, senha)
+        print(resultado[0])
+
+        if resultado:
+            id_usuario = resultado[0]
+            print(id_usuario)
+            messagebox.showinfo("Login", "Login bem-sucedido!")
+            self.root.destroy()  # Fecha janela de  login
+        # Aqui você pode abrir o menu principal ou outra tela
+            
+            root = tk.Tk()
+            app = App(root, id_usuario)
+            print(id_usuario)
+            root.mainloop()
+
+        # Aqui você pode abrir outra janela ou continuar o programa
+        else:
+            messagebox.showerror("Erro", "E-mail ou senha incorretos.")
+
+    
+    def criar_conta(self):
+        self.root.destroy()              
+        root = tk.Tk()
+        app = Registrar(root)
+        root.mainloop()
+    
+    def limpar_campos(self):
+        self.entry_marca.delete(0, tk.END)
+        self.entry_modelo.delete(0, tk.END)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = Login(root)
+    root.mainloop()
+
+       
+
+class Registrar:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Login")
+        self.dao = UsuarioDAO()
+        self.root.geometry("720x560")
+
+        #* CAMPOS
+        self.label_nome = tk.Label(root, text="Nome:", font="Arial: 20")
+        self.label_nome.pack()
+        self.entry_nome = tk.Entry(root, font="Arial: 20")
+        self.entry_nome.pack()
+
+        self.label_email = tk.Label(root, text="Email:", font="Arial: 20")
+        self.label_email.pack()
+        self.entry_email = tk.Entry(root, font="Arial: 20")
+        self.entry_email.pack()
+
+        self.label_senha = tk.Label(root, text="Senha:", font="Arial: 20")
+        self.label_senha.pack()
+        self.entry_senha = tk.Entry(root, show="*", font="Arial: 20")
+        self.entry_senha.pack()
+
+        self.label_cpf = tk.Label(root, text="CPF:", font="Arial: 20")
+        self.label_cpf.pack()
+        self.entry_cpf = tk.Entry(root, font="Arial: 20")
+        self.entry_cpf.pack()
+
+        self.label_dt_nasc = tk.Label(root, text="Data de Nascimento (YYYY-MM-DD):", font="Arial: 18")
+        self.label_dt_nasc.pack()
+        self.entry_dt_nasc = tk.Entry(root, font="Arial: 20")
+        self.entry_dt_nasc.pack()
+
+        
+        #? BOTOES
+        tk.Button(root, text="Criar", command=self.criar, font="Arial: 20", bg="#228B22", fg="white").pack(side="left", padx=30)
+        tk.Button(root, text="Já tenho conta", command=self.logar , font="Arial: 10", bg="#228B22", fg="white").pack(side="right", pady=10)
+
+    def criar(self):
+        nome = self.entry_nome.get()
+        email = self.entry_email.get()
+        senha = self.entry_senha.get()
+        # permissoes = self.entry_permissoes.get()
+        cpf = self.entry_cpf.get()
+        dt_nasc = self.entry_dt_nasc.get()
+
+        if nome and email:
+            usuario = Usuario(
+                nome=nome,
+                email=email,
+                senha=senha,
+                # permissoes=permissoes,
+                cpf=cpf,
+                dt_nasc=dt_nasc
+            )
+            self.dao.criar(usuario)
+            messagebox.showinfo("SUCESSO", "Usuário criado!")
+            self.limpar_campos()
+            
+        else:
+            messagebox.showwarning("Erro", "Preencha todos os campos corretamente!")
+    def limpar_campos(self):
+        self.entry_marca.delete(0, tk.END)
+        self.entry_modelo.delete(0, tk.END)
+
+    
+    def logar(self):
+        self.root.destroy()              
+        root = tk.Tk()
+        app = Login(root)
+        root.mainloop()
+        
+class App:
+    def __init__(self, root, id_usuario):
+        self.dao = UsuarioDAO()
+        self.id_usuario = id_usuario
+        print(id_usuario)
         self.root = root
         self.root.title("CRUD Usuario com MySQL")
         self.root.geometry("1280x720")
+
+
 
         #* CAMPOS
         self.label_nome = tk.Label(root, text="Nome:", font="Arial: 20")
@@ -130,141 +267,14 @@ class App:
         if __name__ == "__main__":
             self.root.destroy()
             root = tk.Tk()
-            app = VeiculoApp(root)
+            app = VeiculoApp(root, self.id_usuario)
             root.mainloop()
-
-
-       
-
-
-
-class Login():
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Login")
-        self.dao = UsuarioDAO()
-        self.root.geometry("720x560")
-
-        tk.Label(root, text="Email:", font="Arial: 40").pack(pady=5)
-        self.entry_email = tk.Entry(root, font="Arial: 40")
-        self.entry_email.pack(pady=5)
-
-        tk.Label(root, text="Senha:", font="Arial: 40").pack(pady=5)
-        self.entry_senha = tk.Entry(root, show="*", font="Arial: 40")
-        self.entry_senha.pack(pady=5)
-
-        tk.Button(root, text="Entrar", command=self.verificar_login , font="Arial: 40", bg="#228B22", fg="white").pack(pady=10)
-
-
-        tk.Button(root, text="Registrar-se", command=self.criar_conta , font="Arial: 10", bg="#228B22", fg="white").pack(pady=10)
-
-    def verificar_login(self):
-        email = self.entry_email.get()
-        senha = self.entry_senha.get()
-
-        resultado = self.dao.verificar_usuario(email, senha)
-
-        if resultado:
-            messagebox.showinfo("Login", "Login bem-sucedido!")
-            self.root.destroy()  # Fecha janela de  login
-        # Aqui você pode abrir o menu principal ou outra tela
-            
-            root = tk.Tk()
-            app = App(root)
-            root.mainloop()
-
-        # Aqui você pode abrir outra janela ou continuar o programa
-        else:
-            messagebox.showerror("Erro", "E-mail ou senha incorretos.")
-
-    
-    def criar_conta(self):
-        self.root.destroy()              
-        root = tk.Tk()
-        app = Registrar(root)
-        root.mainloop()
-    
-    def limpar_campos(self):
-        self.entry_marca.delete(0, tk.END)
-        self.entry_modelo.delete(0, tk.END)
-
-
-class Registrar:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Login")
-        self.dao = UsuarioDAO()
-        self.root.geometry("720x560")
-
-        #* CAMPOS
-        self.label_nome = tk.Label(root, text="Nome:", font="Arial: 20")
-        self.label_nome.pack()
-        self.entry_nome = tk.Entry(root, font="Arial: 20")
-        self.entry_nome.pack()
-
-        self.label_email = tk.Label(root, text="Email:", font="Arial: 20")
-        self.label_email.pack()
-        self.entry_email = tk.Entry(root, font="Arial: 20")
-        self.entry_email.pack()
-
-        self.label_senha = tk.Label(root, text="Senha:", font="Arial: 20")
-        self.label_senha.pack()
-        self.entry_senha = tk.Entry(root, show="*", font="Arial: 20")
-        self.entry_senha.pack()
-
-        self.label_cpf = tk.Label(root, text="CPF:", font="Arial: 20")
-        self.label_cpf.pack()
-        self.entry_cpf = tk.Entry(root, font="Arial: 20")
-        self.entry_cpf.pack()
-
-        self.label_dt_nasc = tk.Label(root, text="Data de Nascimento (YYYY-MM-DD):", font="Arial: 18")
-        self.label_dt_nasc.pack()
-        self.entry_dt_nasc = tk.Entry(root, font="Arial: 20")
-        self.entry_dt_nasc.pack()
-
-        
-        #? BOTOES
-        tk.Button(root, text="Criar", command=self.criar, font="Arial: 20", bg="#228B22", fg="white").pack(side="left", padx=30)
-        tk.Button(root, text="Já tenho conta", command=self.logar , font="Arial: 10", bg="#228B22", fg="white").pack(side="right", pady=10)
-
-    def criar(self):
-        nome = self.entry_nome.get()
-        email = self.entry_email.get()
-        senha = self.entry_senha.get()
-        # permissoes = self.entry_permissoes.get()
-        cpf = self.entry_cpf.get()
-        dt_nasc = self.entry_dt_nasc.get()
-
-        if nome and email:
-            usuario = Usuario(
-                nome=nome,
-                email=email,
-                senha=senha,
-                # permissoes=permissoes,
-                cpf=cpf,
-                dt_nasc=dt_nasc
-            )
-            self.dao.criar(usuario)
-            messagebox.showinfo("SUCESSO", "Usuário criado!")
-            self.limpar_campos()
-            
-        else:
-            messagebox.showwarning("Erro", "Preencha todos os campos corretamente!")
-    def limpar_campos(self):
-        self.entry_marca.delete(0, tk.END)
-        self.entry_modelo.delete(0, tk.END)
-
-    
-    def logar(self):
-        self.root.destroy()              
-        root = tk.Tk()
-        app = Login(root)
-        root.mainloop()
-        
 
 class VeiculoApp:
-    def __init__(self, root):
+    def __init__(self, root, id_usuario):
         self.dao = VeiculoDAO()
+        self.id_usuario = id_usuario
+        print(id_usuario)
         self.root = root
         self.root.title("Cadastrar Veiculo")
         self.root.geometry("1280x720")
@@ -286,12 +296,13 @@ class VeiculoApp:
         self.text_resultado.pack(side="bottom", padx=20, pady=20)
 
     def cadastrar(self):
-        id_usu = self.usuario.id.get()
+        
         marca = self.entry_marca.get()
         modelo = self.entry_modelo.get()
+        
 
         if marca and modelo:
-            veiculo = Veiculo(id=id_usu, marca=marca, modelo=modelo)
+            veiculo = Veiculo(id=self.id_usuario, marca=marca, modelo=modelo)
             self.dao.cadastrar(veiculo)
             messagebox.showinfo("SUCESSO", "Veiculo cadastrado")
             self.limpar_campos()
@@ -311,10 +322,3 @@ class VeiculoApp:
         self.entry_modelo.delete(0, tk.END)
 
 
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = Login(root)
-    root.mainloop()
-
-       

@@ -26,3 +26,7 @@ class Veiculo:
     def modelo(self):
         return self.__modelo
     
+
+    @id_usuario.setter
+    def id_usuario(self, valor):
+        self.__id_usuario = valor
