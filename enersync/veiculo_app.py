@@ -44,7 +44,7 @@ class VeiculoApp:
         usuarios = self.dao.listarautos()
         self.text_resultado.delete(1.0, tk.END)
         for r in usuarios:
-            self.text_resultado.insert(tk.END, f"ID-Usu: {r[0]} | Marca: {r[1]} | Modelo: {r[2]}\n\n")
+            self.text_resultado.insert(tk.END, f"ID-Usu: {r[1]} | Marca: {r[2]} | Modelo: {r[3]}\n\n")
         self.limpar_campos()
 
     def limpar_campos(self):

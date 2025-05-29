@@ -8,7 +8,7 @@ class Registrar:
         self.root = root
         self.root.title("Registrar")
         self.dao = UsuarioDAO()
-        self.root.geometry("720x560")
+        self.root.geometry("1280x720")
 
         self.label_nome = tk.Label(root, text="Nome:", font="Arial: 20")
         self.label_nome.pack()

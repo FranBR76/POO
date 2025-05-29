@@ -8,7 +8,7 @@ class Login:
         self.root = root
         self.root.title("Login")
         self.dao = UsuarioDAO()
-        self.root.geometry("720x560")
+        self.root.geometry("1280x720")
 
         tk.Label(root, text="Email:", font="Arial: 40").pack(pady=5)
         self.entry_email = tk.Entry(root, font="Arial: 40")
