@@ -45,15 +45,16 @@ class App:
 
         # tk.Button(root, text="Criar", command=self.criar, font="Arial: 20", bg="#333", fg="white").pack(side="left", padx=30)
         # tk.Button(root, text="Listar", command=self.listar, font="Arial: 20", bg="#333", fg="white").pack(side="right", padx=30)
-        for col in range(5):  # Já que você usa até column=4
+        for col in range(5): 
             root.grid_columnconfigure(col, weight=1)
 
-        tk.Label(root, text="Bem-vindo de volta!", font="Arial: 40", bg="lightblue").grid(row=0, column=0, rowspan=4, pady=5, sticky="ew")
-        tk.Button(root, text="Atualizar dados", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=5, column=2, pady=5, sticky="ew")
-        tk.Button(root, text="Planejar viagem", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=5, column=3, sticky="ew", pady=5)
-        tk.Button(root, text="Noticias", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=5, column=4, sticky="ew", pady=5)
-        tk.Button(root, text="Comprar peças", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=6, column=2, sticky="ew", pady=5)
-        tk.Button(root, text="Cadastro Veiculo", command=self.cadastrar_veiculo, font="Arial: 20", bg="#333", fg="white").grid(row=6, column=3, sticky="ew", pady=5)
+        tk.Label(root, text="Bem-vindo de volta!", font="Arial: 28", bg="lightblue").grid(row=0, column=2, pady=5, sticky="ew")
+        tk.Label(root, text="", font="Arial: 28", bg="lightblue").grid(row=1, column=0, pady=5, sticky="ew")
+        tk.Button(root, text="Atualizar dados", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=2, column=1, pady=5, sticky="ew")
+        tk.Button(root, text="Planejar viagem", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=2, column=2, sticky="ew", pady=5)
+        tk.Button(root, text="Noticias", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=2, column=3, sticky="ew", pady=5)
+        tk.Button(root, text="Comprar peças", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=3, column=3, sticky="ew", pady=5)
+        tk.Button(root, text="Cadastro Veiculo", command=self.cadastrar_veiculo, font="Arial: 20", bg="#333", fg="white").grid(row=3, column=1, sticky="ew", pady=5)
 
         # tk.Button(root, text="Deletar conta", command=self.deletar, font="Arial: 8", bg="#333", fg="white").pack(side="bottom", padx=30)
         # self.text_resultado = tk.Text(root, height=10, font="Arial: 20", bg="#ccc")
