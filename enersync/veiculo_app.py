@@ -10,6 +10,7 @@ class VeiculoApp:
         self.root = root
         self.root.title("Cadastrar Veiculo")
         self.root.geometry("1280x720")
+        self.root.configure(bg="lightblue")
 
         self.label_marca = tk.Label(root, text="Marca", font="Arial: 20")
         self.label_marca.pack()

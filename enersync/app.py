@@ -4,6 +4,7 @@ from usuario import Usuario
 from usuarioDAO import UsuarioDAO
 from veiculo_app import VeiculoApp
 
+
 class App:
     def __init__(self, root, id_usuario):
         self.dao = UsuarioDAO()
@@ -50,10 +51,16 @@ class App:
 
         tk.Label(root, text="Bem-vindo de volta!", font="Arial: 28", bg="lightblue").grid(row=0, column=2, pady=5, sticky="ew")
         tk.Label(root, text="", font="Arial: 28", bg="lightblue").grid(row=1, column=0, pady=5, sticky="ew")
-        tk.Button(root, text="Atualizar dados", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=2, column=1, pady=5, sticky="ew")
-        tk.Button(root, text="Planejar viagem", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=2, column=2, sticky="ew", pady=5)
+
+        #*
+        tk.Button(root, text="Atualizar dados", command=self.atualizardado, font="Arial: 20", bg="#333", fg="white").grid(row=2, column=1, pady=5, sticky="ew")
+        #!
+        tk.Button(root, text="Planejar viagem", command=self.planejar, font="Arial: 20", bg="#333", fg="white").grid(row=2, column=2, sticky="ew", pady=5)
+        #!
         tk.Button(root, text="Noticias", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=2, column=3, sticky="ew", pady=5)
+        #!
         tk.Button(root, text="Comprar peças", command=self.atualizar, font="Arial: 20", bg="#333", fg="white").grid(row=3, column=3, sticky="ew", pady=5)
+        #*
         tk.Button(root, text="Cadastro Veiculo", command=self.cadastrar_veiculo, font="Arial: 20", bg="#333", fg="white").grid(row=3, column=1, sticky="ew", pady=5)
 
         # tk.Button(root, text="Deletar conta", command=self.deletar, font="Arial: 8", bg="#333", fg="white").pack(side="bottom", padx=30)
@@ -115,4 +122,18 @@ class App:
         self.root.destroy()
         root = tk.Tk()
         app = VeiculoApp(root, self.id_usuario)
+        root.mainloop()
+
+    def atualizardado(self):
+        from atualizar import AtualizarDados
+        self.root.destroy()
+        root = tk.Tk()
+        app = AtualizarDados(root, self.id_usuario)
+        root.mainloop()
+
+    def planejar(self):
+        from planoViagem import PlanoViagem 
+        self.root.destroy()
+        root = tk.Tk()
+        app = PlanoViagem(root, self.id_usuario)
         root.mainloop()

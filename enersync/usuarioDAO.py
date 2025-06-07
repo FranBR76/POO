@@ -28,10 +28,14 @@ class UsuarioDAO:
         
     
     def atualizar(self, usuario):
-        sql = "UPDATE usuario SET nome = %s, email = %s WHERE id = %s"
-        self.cursor.execute(sql, (usuario.nome, usuario.email, usuario.id))
+        sql = "UPDATE usuario SET nome = %s, email = %s, senha = %s, dt_nasc = %s WHERE id = %s"
+        self.cursor.execute(sql, (usuario.nome, usuario.email, usuario.senha, usuario.dt_nasc, usuario.id))
         self.conexao.commit()
        
+    # def cadastrar(self, veiculo):
+    #     sql = "INSERT INTO veiculo (id_usuario, marca, modelo) VALUES (%s, %s, %s)"
+    #     self.cursor.execute(sql, (veiculo.id_usuario, veiculo.marca, veiculo.modelo))
+    #     self.conexao.commit()
 
     def deletar(self, id):
         sql = "DELETE FROM usuario WHERE id = %s"
