@@ -19,3 +19,8 @@ class PlanoViagem:
 
         self.label_partida = tk.Label(root, text="Qual o local de partida?").pack()
         self.label_partida = tk.Entry(root, font="Arial: 15").pack()
+        self.label_partida = tk.Label(root, text="Qual o destino?").pack()
+        self.label_partida = tk.Entry(root, font="Arial: 15").pack()
+        self.label_partida = tk.Label(root, text="Qual a porcetagem de bateria?").pack()
+        self.label_partida = tk.Entry(root, font="Arial: 15").pack() #!FAZER SELECT BOX
+        
