@@ -6,7 +6,8 @@ from usuario import Usuario
 from usuarioDAO import UsuarioDAO
 from app import App
 
-class AtualizarDados:
+from metodos import Voltar
+class AtualizarDados(Voltar):
     def __init__(self, root, id_usuario):
         self.dao = UsuarioDAO()
         self.id_usuario = id_usuario
@@ -15,6 +16,7 @@ class AtualizarDados:
         self.root.geometry("1280x720")
         self.root.configure(bg="lightblue")
 
+        tk.Button(root, text="< Voltar", command=self.voltar, bg="#333", fg="White").pack(pady=20, anchor="w")
 
         self.label_nome = tk.Label(root, text="Nome:", font="Arial: 15")
         self.label_nome.pack()

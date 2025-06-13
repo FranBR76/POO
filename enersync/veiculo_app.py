@@ -3,7 +3,8 @@ from tkinter import messagebox
 from veiculo import Veiculo
 from veiculoDAO import VeiculoDAO
 
-class VeiculoApp:
+from metodos import Voltar
+class VeiculoApp(Voltar):
     def __init__(self, root, id_usuario):
         self.dao = VeiculoDAO()
         self.id_usuario = id_usuario
@@ -11,6 +12,8 @@ class VeiculoApp:
         self.root.title("Cadastrar Veiculo")
         self.root.geometry("1280x720")
         self.root.configure(bg="lightblue")
+
+        tk.Button(root, text="< Voltar", command=self.voltar, bg="#333", fg="White").pack(pady=20, anchor="w")
 
         self.label_marca = tk.Label(root, text="Marca", font="Arial: 20")
         self.label_marca.pack()

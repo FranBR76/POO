@@ -137,3 +137,5 @@ class App:
         root = tk.Tk()
         app = PlanoViagem(root, self.id_usuario)
         root.mainloop()
+
+  
